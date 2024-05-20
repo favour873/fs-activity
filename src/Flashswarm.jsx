@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -6,6 +7,7 @@ const Flashswarm = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [swarmTime, setSwarmTime] = useState(new Date());
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,8 +16,8 @@ const Flashswarm = () => {
       description,
       swarmTime,
     };
-    console.log('Swarm Created:', swarmDetails);
-    // Here you can add the code to send the swarmDetails to your backend or perform any other action
+    // Navigate to the confirmation page with swarm details
+    navigate('/confirmation', { state: swarmDetails });
   };
 
   return (
